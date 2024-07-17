@@ -1,0 +1,41 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+label, input, select, button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#story {
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
+
+audio {
+  display: block;
+  margin: 20px 0;
+}
