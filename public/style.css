@@ -1,11 +1,15 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: black; /* Set the background color to black */
+  color: white; /* Change the text color to white for better contrast */
 }
 
 .container {
   width: 50%;
   margin: 0 auto;
   padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: add a semi-transparent background to make the content stand out */
+  border-radius: 10px;
 }
 
 h1, h2 {
@@ -38,4 +42,130 @@ button:hover {
 audio {
   display: block;
   margin: 20px 0;
+}
+
+.loading {
+  display: none;
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.loading.show {
+  display: block;
+}
+
+/* Add styles for audio container */
+#audio-container {
+  position: relative;
+  margin-top: 10px;
+}
+
+/* Style for audio loading indicator */
+#audio-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  color: #333;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+}
+
+.dropdown-container {
+  margin: 20px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dropdown {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.horizontal-box {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.horizontal-box > div {
+  flex: 1;
+  padding: 10px;
+  border-left: 1px solid #ccc;
+}
+
+.horizontal-box > div:first-child {
+  border-left: none;
+}
+
+.horizontal-box input,
+.horizontal-box textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1em;
+}
+
+#character-names-tags {
+  display: block;
+}
+
+.character-name-tag {
+  display: inline-block; /* Ensure the background only covers the word length */
+  background-color: #ff6347;
+  color: white;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 5px 0; /* Add vertical margin for spacing */
+}
+
+.character-name-tag {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 5px 0; /* Add vertical margin for spacing */
+  color: white;
+}
+
+.character-name-tag.random-bg {
+  background-color: #ff6347; /* Default background color */
+}
+
+.character-name-tag.random-bg:nth-child(odd) {
+  background-color: #4CAF50; /* Alternate background color */
+}
+
+.character-name-tag.random-bg:nth-child(even) {
+  background-color: #2196F3; /* Alternate background color */
+}
+
+.character-description-tag {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 5px 0; /* Add vertical margin for spacing */
+  color: white;
+  background-color: #ff6347; /* Default background color */
+}
+
+/* Optional: Add styles for alternating colors */
+.character-description-tag:nth-child(odd) {
+  background-color: #4CAF50; /* Alternate background color */
+}
+
+.character-description-tag:nth-child(even) {
+  background-color: #2196F3; /* Alternate background color */
 }

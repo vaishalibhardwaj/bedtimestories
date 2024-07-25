@@ -5,35 +5,129 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bedtime Stories</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .loading {
+      display: none;
+      font-size: 1.5em;
+      color: #333;
+      margin-top: 10px;
+    }
+    .loading.show {
+      display: block;
+    }
+    #audio-container {
+      position: relative;
+      margin-top: 10px;
+    }
+    #audio-loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      font-size: 1em;
+      color: #333;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 1;
+    }
+    .dropdown-container {
+      margin: 20px 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .dropdown {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+    }
+    .horizontal-box {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    .horizontal-box > div {
+      flex: 1;
+      padding: 10px;
+      border-left: 1px solid #ccc;
+    }
+    .horizontal-box > div:first-child {
+      border-left: none;
+    }
+    .horizontal-box input,
+    .horizontal-box textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1em;
+    }
+    .character-name-tag,
+    .character-description-tag {
+      display: inline-block;
+      color: white;
+      border-radius: 15px;
+      padding: 5px 10px;
+      margin: 5px 0; /* Add vertical margin for spacing */
+    }
+    .character-name-tag {
+      background-color: #ff6347; /* Default background color for names */
+    }
+    .character-description-tag {
+      background-color: #4CAF50; /* Default background color for descriptions */
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Create a Personalized Bedtime Story</h1>
-    <label for="name">Character Name:</label>
-    <input type="text" id="name" name="name">
+    <h1>What thrilling journey will you dream up next?
+    </h1>
     
-    <label for="favoriteColor">Favorite Color:</label>
-    <input type="text" id="favoriteColor" name="favoriteColor">
-    
-    <label for="favoriteAnimal">Favorite Animal:</label>
-    <input type="text" id="favoriteAnimal" name="favoriteAnimal">
-    
-    <label for="theme">Theme:</label>
-    <select id="theme" name="theme">
-      <option value="calm">Calm</option>
-      <option value="adventurous">Adventurous</option>
-      <option value="magical">Magical</option>
-      <option value="peaceful">Peaceful</option>
-      <option value="funny">Funny</option>
-      <option value="inspirational">Inspirational</option>
-      <option value="friendship">Friendship</option>
-    </select>
+    <div class="dropdown-container">
+      <select class="dropdown" id="theme">
+        <option value="calm">Calm</option>
+        <option value="adventurous">Adventurous</option>
+        <option value="magical">Magical</option>
+        <option value="peaceful">Peaceful</option>
+        <option value="funny">Funny</option>
+        <option value="inspirational">Inspirational</option>
+        <option value="friendship">Friendship</option>
+      </select>
+    </div>
+
+    <div class="horizontal-box">
+      <div>
+        <label for="character-names">Character Name(s)</label>
+        <input type="text" id="character-names" name="character-names" maxlength="1000" onkeypress="handleCharacterNameInput(event)">
+        <div id="character-names-tags"></div>
+      </div>
+      <div>
+        <label for="character-descriptions">Character Description(s)</label>
+        <textarea id="character-descriptions" name="character-descriptions" maxlength="1000" onkeypress="handleCharacterDescriptionInput(event)"></textarea>
+        <div id="character-descriptions-tags"></div>
+      </div>
+      <div>
+        <label for="adventure">Adventure</label>
+        <input type="text" id="adventure" name="adventure">
+      </div>
+    </div>
     
     <button onclick="createStory()">Create Story</button>
     
     <h2>Your Story</h2>
     <p id="story"></p>
-    <audio controls id="audio"></audio>
+    <div id="story-loading" class="loading">Loading story...</div>
+    
+    <div id="audio-container">
+      <audio controls id="audio"></audio>
+      <div id="audio-loading" class="loading">Loading audio...</div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
