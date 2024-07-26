@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -26,11 +24,15 @@ function truncateToWordLimit(text, limit) {
   }
   return text;
 }
+
 function formatStory(story) {
   return story.replace(/#(\w+)/g, '**$1**');
 }
+
 app.post('/api/create-story', async (req, res) => {
   const { characterNames, characterDescriptions, adventure, theme } = req.body;
+
+  console.log('Request Received:', req.body);
 
   const prompt = `Create a personalized bedtime story with the following details:
     - Character Names: ${characterNames}
@@ -53,7 +55,6 @@ app.post('/api/create-story', async (req, res) => {
     let maxIterations = 5;
 
     while (totalWords < 500 && maxIterations > 0) {
-
       console.log('Request Payload to OpenAI:', {
         model: 'gpt-4o-mini',
         messages: messages,
@@ -65,6 +66,7 @@ app.post('/api/create-story', async (req, res) => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${API_KEY}`,
       });
+
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
@@ -104,6 +106,7 @@ app.post('/api/create-story', async (req, res) => {
 
     res.end();
   } catch (error) {
+    console.error('Error creating story:', error);
     res.status(500).json({ error: error.response ? error.response.data : error.message });
   }
 });
@@ -123,7 +126,7 @@ app.post('/api/convert-to-speech', async (req, res) => {
 
     res.json({ audioUrl: '/speech.mp3' });
   } catch (error) {
-    
+    console.error('Error converting to speech:', error);
     res.status(500).json({ error: error.response ? error.response.data : error.message });
   }
 });
