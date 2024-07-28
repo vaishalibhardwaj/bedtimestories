@@ -6,8 +6,8 @@ const path = require('path');
 const OpenAI = require('openai');
 const app = express();
 
-const API_KEY = process.env.OPENAI_API_KEY;
-const openai = new OpenAI({ apiKey: API_KEY });
+const meow = 'sk-proj-DeOWUO16sNyaQVQjqxCGT3BlbkFJTziHLsIIklJm1Jvmpg06';
+const openai = new OpenAI({ apiKey: meow });
 const speechFile = path.resolve('./public/speech.mp3');
 
 app.use(bodyParser.json());
@@ -64,7 +64,7 @@ app.post('/api/create-story', async (req, res) => {
 
       console.log('Request Headers:', {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${API_KEY}`,
+        'Authorization': `Bearer ${meow}`,
       });
 
       const response = await axios.post(
@@ -78,7 +78,7 @@ app.post('/api/create-story', async (req, res) => {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${API_KEY}`,
+            'Authorization': `Bearer ${meow}`,
           },
         }
       );
